@@ -70,7 +70,7 @@ def make_choropleth(input_df, input_id, input_column, input_color_theme):
                                labels={'population':'Population'}
                               )
     choropleth.update_layout(
-        template='plotly_dark',
+        template='plotly_white',
         plot_bgcolor='white',
         paper_bgcolor='white',
         margin=dict(l=0, r=0, t=0, b=0),
