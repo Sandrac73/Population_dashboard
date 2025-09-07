@@ -52,7 +52,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
             color=alt.Color(f'max({input_color}):Q',
                              legend=None,
                              scale=alt.Scale(scheme=input_color_theme)),
-            stroke=alt.value('black'),
+            stroke=alt.value(' '),
             strokeWidth=alt.value(0.25),
         ).properties(width=900
         ).configure_axis(
