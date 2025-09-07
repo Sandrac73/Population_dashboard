@@ -12,7 +12,7 @@ import pandas as pd
 import altair as alt
 import plotly.express as px
 
-df_reshaped = pd.read_csv('data/us-population-2010-2019-reshaped.csv')
+df_reshaped = pd.read_csv('us-population-2010-2019-reshaped.csv')
 
 states_abbreviation = {
     "Alabama": "AL",
