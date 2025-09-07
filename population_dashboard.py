@@ -122,6 +122,13 @@ def format_number(num):
 
 col = st.columns((1.5, 4.5, 2), gap='medium')
 
+def calculate_population_difference(input_df, input_year):
+  selected_year_data = input_df[input_df['year'] == input_year].reset_index()
+  previous_year_data = input_df[input_df['year'] == input_year - 1].reset_index()
+  selected_year_data['population_difference'] = selected_year_data.population.sub(previous_year_data.population, fill_value=0)
+  return pd.concat([selected_year_data.states, selected_year_data.id, selected_year_data.population, selected_year_data.population_difference], axis=1).sort_values(by="population_difference", ascending=False)
+
+
 with col[0]:
     st.markdown('#### Gains/Losses')
 
