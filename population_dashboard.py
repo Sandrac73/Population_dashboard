@@ -57,9 +57,6 @@ st.set_page_config(
 )
 alt.themes.enable('dark')
 
-df_reshaped = pd.read_csv('/content/us-population-2010-2019-reshaped.csv')
-df_reshaped
-
 with st.sidebar:
     st.title('US Population Dashboard')
 
