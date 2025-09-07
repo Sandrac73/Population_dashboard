@@ -15,7 +15,7 @@ import plotly.express as px
 #setup page configuration
 st.set_page_config(
     page_title="US Population Dashboard",
-    page_icon="🇺🇸",
+    page_icon="⛰️",
     layout="wide",
     initial_sidebar_state="expanded")
 
@@ -76,7 +76,7 @@ df_reshaped = pd.read_csv('us-population-2010-2019-reshaped.csv')
 
 #add sidebar
 with st.sidebar:
-    st.title('🇺🇸 US Population Dashboard')
+    st.title('⛰️ US Population Dashboard')
 
     year_list = list(df_reshaped.year.unique())[::-1]
 
