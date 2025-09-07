@@ -14,42 +14,6 @@ import plotly.express as px
 
 df_reshaped = pd.read_csv('us-population-2010-2019-reshaped.csv')
 
-df.to_csv('us-population-2010-2019-states-code.csv', index=False)
-
-df_reshaped = pd.melt(df, id_vars=['states', 'states_code', 'id'], var_name='year', value_name='population')
-
-# convert year column values to integers
-df_reshaped['states'] = df_reshaped['states'].astype(str)
-df_reshaped['year'] = df_reshaped['year'].astype(int)
-df_reshaped['population'] = df_reshaped['population'].str.replace(',', '').astype(int)
-
-df_reshaped
-
-df_reshaped.to_csv('us-population-2010-2019-reshaped.csv', index=False)
-
-selected_year = 2019
-df_selected_year = df_reshaped[df_reshaped['year'] == selected_year]
-df_selected_year
-
-df_selected_year_sorted = df_selected_year.sort_values(by='population', ascending=False)
-df_selected_year_sorted
-
-def calculate_population_difference(input_df, input_year):
-  selected_year_data = input_df[input_df['year'] == input_year].reset_index()
-  previous_year_data = input_df[input_df['year'] == input_year - 1].reset_index()
-  selected_year_data['population_difference'] = selected_year_data.population.sub(previous_year_data.population, fill_value=0)
-  selected_year_data['population_difference_absolute'] = abs(selected_year_data['population_difference'])
-  return pd.concat([selected_year_data.states, selected_year_data.id, selected_year_data.population, selected_year_data.population_difference, selected_year_data.population_difference_absolute], axis=1).sort_values(by='population_difference', ascending=False)
-
-df_population_difference_sorted = calculate_population_difference(df_reshaped, selected_year)
-df_population_difference_sorted
-
-df_greater_50000 = df_population_difference_sorted[df_population_difference_sorted['population_difference_absolute'] > 50000]
-df_greater_50000
-
-int((len(df_greater_50000) / df_population_difference_sorted.states.nunique()) * 100)
-
-
 
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     heatmap = alt.Chart(input_df).mark_rect().encode(
